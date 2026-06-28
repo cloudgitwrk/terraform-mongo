@@ -219,3 +219,298 @@ Thx6Y+ftPWMAAAAWeW91ci1lbWFpbEBleGFtcGxlLmNvbQECAwQF
 root@178c45c19ff5:/# ssh -T git@github.com
 Hi cloudgitwrk! You've successfully authenticated, but GitHub does not provide shell access.
 ````
+
+````ruby
+Started by user Venkatesh Reddy
+Obtained Jenkinsfile from git git@github.com:cloudgitwrk/terraform-mongo.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/workspace/mongo-terraform-job
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+Cloning the remote Git repository
+Cloning repository git@github.com:cloudgitwrk/terraform-mongo.git
+ > git init /var/jenkins_home/workspace/mongo-terraform-job # timeout=10
+Fetching upstream changes from git@github.com:cloudgitwrk/terraform-mongo.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.3'
+ > git fetch --tags --force --progress -- git@github.com:cloudgitwrk/terraform-mongo.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url git@github.com:cloudgitwrk/terraform-mongo.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision eed3d145a130a68d0e6cdad8d8f09cc6e20653f9 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f eed3d145a130a68d0e6cdad8d8f09cc6e20653f9 # timeout=10
+Commit message: "Document SSH key setup for GitHub in README"
+First time build. Skipping changelog.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout Code)
+[Pipeline] git
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/mongo-terraform-job/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url git@github.com:cloudgitwrk/terraform-mongo.git # timeout=10
+Fetching upstream changes from git@github.com:cloudgitwrk/terraform-mongo.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.3'
+ > git fetch --tags --force --progress -- git@github.com:cloudgitwrk/terraform-mongo.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision eed3d145a130a68d0e6cdad8d8f09cc6e20653f9 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f eed3d145a130a68d0e6cdad8d8f09cc6e20653f9 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git checkout -b main eed3d145a130a68d0e6cdad8d8f09cc6e20653f9 # timeout=10
+Commit message: "Document SSH key setup for GitHub in README"
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Terraform Init)
+[Pipeline] sh
++ terraform init
+
+[0m[1mInitializing the backend...[0m
+
+[0m[1mInitializing provider plugins...[0m
+- Finding mongodb/mongodbatlas versions matching "~> 1.15"...
+- Installing mongodb/mongodbatlas v1.41.1...
+- Installed mongodb/mongodbatlas v1.41.1 (signed by a HashiCorp partner, key ID [0m[1m2A32ED1F3AD25ABF[0m[0m)
+
+Partner and community providers are signed by their developers.
+If you'd like to know more about provider signing, you can read about it here:
+https://www.terraform.io/docs/cli/plugins/signing.html
+
+Terraform has created a lock file [1m.terraform.lock.hcl[0m to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.[0m
+
+[0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
+[0m[32m
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.[0m
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Terraform Validate)
+[Pipeline] sh
++ terraform validate
+[32m[1mSuccess![0m The configuration is valid.
+[0m
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Terraform Plan)
+[Pipeline] sh
++ terraform plan
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [32m+[0m create[0m
+
+Terraform will perform the following actions:
+
+[1m  # mongodbatlas_cluster.cluster[0m will be created
+[0m  [32m+[0m[0m resource "mongodbatlas_cluster" "cluster" {
+      [32m+[0m[0m accept_data_risks_and_force_replica_set_reconfig = (known after apply)
+      [32m+[0m[0m auto_scaling_compute_enabled                     = (known after apply)
+      [32m+[0m[0m auto_scaling_compute_scale_down_enabled          = (known after apply)
+      [32m+[0m[0m auto_scaling_disk_gb_enabled                     = (known after apply)
+      [32m+[0m[0m backing_provider_name                            = "AWS"
+      [32m+[0m[0m backup_enabled                                   = (known after apply)
+      [32m+[0m[0m cloud_backup                                     = (known after apply)
+      [32m+[0m[0m cluster_id                                       = (known after apply)
+      [32m+[0m[0m cluster_type                                     = "REPLICASET"
+      [32m+[0m[0m connection_strings                               = (known after apply)
+      [32m+[0m[0m container_id                                     = (known after apply)
+      [32m+[0m[0m disk_size_gb                                     = (known after apply)
+      [32m+[0m[0m encryption_at_rest_provider                      = (known after apply)
+      [32m+[0m[0m id                                               = (known after apply)
+      [32m+[0m[0m mongo_db_major_version                           = (known after apply)
+      [32m+[0m[0m mongo_db_version                                 = (known after apply)
+      [32m+[0m[0m mongo_uri                                        = (known after apply)
+      [32m+[0m[0m mongo_uri_updated                                = (known after apply)
+      [32m+[0m[0m mongo_uri_with_options                           = (known after apply)
+      [32m+[0m[0m name                                             = "tf-m0-cluster"
+      [32m+[0m[0m num_shards                                       = (known after apply)
+      [32m+[0m[0m paused                                           = (known after apply)
+      [32m+[0m[0m pit_enabled                                      = (known after apply)
+      [32m+[0m[0m project_id                                       = (known after apply)
+      [32m+[0m[0m provider_auto_scaling_compute_max_instance_size  = (known after apply)
+      [32m+[0m[0m provider_auto_scaling_compute_min_instance_size  = (known after apply)
+      [32m+[0m[0m provider_disk_iops                               = (known after apply)
+      [32m+[0m[0m provider_disk_type_name                          = (known after apply)
+      [32m+[0m[0m provider_encrypt_ebs_volume                      = (known after apply)
+      [32m+[0m[0m provider_encrypt_ebs_volume_flag                 = (known after apply)
+      [32m+[0m[0m provider_instance_size_name                      = "M0"
+      [32m+[0m[0m provider_name                                    = "TENANT"
+      [32m+[0m[0m provider_region_name                             = "AP_SOUTH_1"
+      [32m+[0m[0m provider_volume_type                             = (known after apply)
+      [32m+[0m[0m redact_client_log_data                           = (known after apply)
+      [32m+[0m[0m replication_factor                               = (known after apply)
+      [32m+[0m[0m snapshot_backup_policy                           = (known after apply)
+      [32m+[0m[0m srv_address                                      = (known after apply)
+      [32m+[0m[0m state_name                                       = (known after apply)
+      [32m+[0m[0m termination_protection_enabled                   = (known after apply)
+      [32m+[0m[0m version_release_system                           = (known after apply)
+    }
+
+[1m  # mongodbatlas_project.project[0m will be created
+[0m  [32m+[0m[0m resource "mongodbatlas_project" "project" {
+      [32m+[0m[0m cluster_count                                    = (known after apply)
+      [32m+[0m[0m created                                          = (known after apply)
+      [32m+[0m[0m id                                               = (known after apply)
+      [32m+[0m[0m ip_addresses                                     = (known after apply)
+      [32m+[0m[0m is_collect_database_specifics_statistics_enabled = (known after apply)
+      [32m+[0m[0m is_data_explorer_enabled                         = (known after apply)
+      [32m+[0m[0m is_extended_storage_sizes_enabled                = (known after apply)
+      [32m+[0m[0m is_performance_advisor_enabled                   = (known after apply)
+      [32m+[0m[0m is_realtime_performance_panel_enabled            = (known after apply)
+      [32m+[0m[0m is_schema_advisor_enabled                        = (known after apply)
+      [32m+[0m[0m is_slow_operation_thresholding_enabled           = (known after apply)
+      [32m+[0m[0m name                                             = "tf-test-project"
+      [32m+[0m[0m org_id                                           = "65cb1f577520326ee15a5578"
+      [32m+[0m[0m region_usage_restrictions                        = (known after apply)
+      [32m+[0m[0m with_default_alerts_settings                     = true
+    }
+
+[1mPlan:[0m 2 to add, 0 to change, 0 to destroy.
+[0m[90m
+─────────────────────────────────────────────────────────────────────────────[0m
+
+Note: You didn't use the -out option to save this plan, so Terraform can't
+guarantee to take exactly these actions if you run "terraform apply" now.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Terraform Apply)
+[Pipeline] sh
++ terraform apply -auto-approve
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [32m+[0m create[0m
+
+Terraform will perform the following actions:
+
+[1m  # mongodbatlas_cluster.cluster[0m will be created
+[0m  [32m+[0m[0m resource "mongodbatlas_cluster" "cluster" {
+      [32m+[0m[0m accept_data_risks_and_force_replica_set_reconfig = (known after apply)
+      [32m+[0m[0m auto_scaling_compute_enabled                     = (known after apply)
+      [32m+[0m[0m auto_scaling_compute_scale_down_enabled          = (known after apply)
+      [32m+[0m[0m auto_scaling_disk_gb_enabled                     = (known after apply)
+      [32m+[0m[0m backing_provider_name                            = "AWS"
+      [32m+[0m[0m backup_enabled                                   = (known after apply)
+      [32m+[0m[0m cloud_backup                                     = (known after apply)
+      [32m+[0m[0m cluster_id                                       = (known after apply)
+      [32m+[0m[0m cluster_type                                     = "REPLICASET"
+      [32m+[0m[0m connection_strings                               = (known after apply)
+      [32m+[0m[0m container_id                                     = (known after apply)
+      [32m+[0m[0m disk_size_gb                                     = (known after apply)
+      [32m+[0m[0m encryption_at_rest_provider                      = (known after apply)
+      [32m+[0m[0m id                                               = (known after apply)
+      [32m+[0m[0m mongo_db_major_version                           = (known after apply)
+      [32m+[0m[0m mongo_db_version                                 = (known after apply)
+      [32m+[0m[0m mongo_uri                                        = (known after apply)
+      [32m+[0m[0m mongo_uri_updated                                = (known after apply)
+      [32m+[0m[0m mongo_uri_with_options                           = (known after apply)
+      [32m+[0m[0m name                                             = "tf-m0-cluster"
+      [32m+[0m[0m num_shards                                       = (known after apply)
+      [32m+[0m[0m paused                                           = (known after apply)
+      [32m+[0m[0m pit_enabled                                      = (known after apply)
+      [32m+[0m[0m project_id                                       = (known after apply)
+      [32m+[0m[0m provider_auto_scaling_compute_max_instance_size  = (known after apply)
+      [32m+[0m[0m provider_auto_scaling_compute_min_instance_size  = (known after apply)
+      [32m+[0m[0m provider_disk_iops                               = (known after apply)
+      [32m+[0m[0m provider_disk_type_name                          = (known after apply)
+      [32m+[0m[0m provider_encrypt_ebs_volume                      = (known after apply)
+      [32m+[0m[0m provider_encrypt_ebs_volume_flag                 = (known after apply)
+      [32m+[0m[0m provider_instance_size_name                      = "M0"
+      [32m+[0m[0m provider_name                                    = "TENANT"
+      [32m+[0m[0m provider_region_name                             = "AP_SOUTH_1"
+      [32m+[0m[0m provider_volume_type                             = (known after apply)
+      [32m+[0m[0m redact_client_log_data                           = (known after apply)
+      [32m+[0m[0m replication_factor                               = (known after apply)
+      [32m+[0m[0m snapshot_backup_policy                           = (known after apply)
+      [32m+[0m[0m srv_address                                      = (known after apply)
+      [32m+[0m[0m state_name                                       = (known after apply)
+      [32m+[0m[0m termination_protection_enabled                   = (known after apply)
+      [32m+[0m[0m version_release_system                           = (known after apply)
+    }
+
+[1m  # mongodbatlas_project.project[0m will be created
+[0m  [32m+[0m[0m resource "mongodbatlas_project" "project" {
+      [32m+[0m[0m cluster_count                                    = (known after apply)
+      [32m+[0m[0m created                                          = (known after apply)
+      [32m+[0m[0m id                                               = (known after apply)
+      [32m+[0m[0m ip_addresses                                     = (known after apply)
+      [32m+[0m[0m is_collect_database_specifics_statistics_enabled = (known after apply)
+      [32m+[0m[0m is_data_explorer_enabled                         = (known after apply)
+      [32m+[0m[0m is_extended_storage_sizes_enabled                = (known after apply)
+      [32m+[0m[0m is_performance_advisor_enabled                   = (known after apply)
+      [32m+[0m[0m is_realtime_performance_panel_enabled            = (known after apply)
+      [32m+[0m[0m is_schema_advisor_enabled                        = (known after apply)
+      [32m+[0m[0m is_slow_operation_thresholding_enabled           = (known after apply)
+      [32m+[0m[0m name                                             = "tf-test-project"
+      [32m+[0m[0m org_id                                           = "65cb1f577520326ee15a5578"
+      [32m+[0m[0m region_usage_restrictions                        = (known after apply)
+      [32m+[0m[0m with_default_alerts_settings                     = true
+    }
+
+[1mPlan:[0m 2 to add, 0 to change, 0 to destroy.
+[0m[0m[1mmongodbatlas_project.project: Creating...[0m[0m
+[0m[1mmongodbatlas_project.project: Creation complete after 8s [id=6a40cae2f18536d525db2172][0m
+[0m[1mmongodbatlas_cluster.cluster: Creating...[0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [10s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [20s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [30s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [40s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [50s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [1m0s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [1m10s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [1m20s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [1m30s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [1m40s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [1m50s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [2m0s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [2m10s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [2m20s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [2m30s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [2m40s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [2m50s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [3m0s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Creation complete after 3m5s [id=Y2x1c3Rlcl9pZA==:NmE0MGNhZWIwYzdjODQxNDIzNDJkOWQz-Y2x1c3Rlcl9uYW1l:dGYtbTAtY2x1c3Rlcg==-cHJvamVjdF9pZA==:NmE0MGNhZTJmMTg1MzZkNTI1ZGIyMTcy-cHJvdmlkZXJfbmFtZQ==:VEVOQU5U][0m
+[0m[1m[32m
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+[0m
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] echo
+✅ MongoDB Cluster Created Successfully
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
+````
