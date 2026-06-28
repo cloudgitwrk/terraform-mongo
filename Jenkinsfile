@@ -35,13 +35,6 @@
         }
     }
 
-        stage('Terraform Apply') {
-            steps {
-                sh 'terraform destroy -auto-approve'
-            }
-        }
-    }  
-
     post {
         success {
             echo "✅ MongoDB Cluster Created Successfully"
@@ -51,3 +44,4 @@
         }
     }
 }
+ 
