@@ -62,5 +62,5 @@ CONTAINER ID   IMAGE                 COMMAND                  CREATED           
 ```ruby
 93078b4c54154925b80b30d994b97096
 ````
-93078b4c54154925b80b30d994b97096
+
 
