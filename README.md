@@ -56,3 +56,11 @@ CONTAINER ID   IMAGE                 COMMAND                  CREATED           
 178c45c19ff5   jenkins/jenkins:lts   "/usr/bin/tini -- /u…"   About a minute ago   Up About a minute   0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp, 0.0.0.0:50000->50000/tcp, [::]:50000->50000/tcp   jenkins
 
 `````
+
+># (venv) root@DELL-PERSONAL-LAPTOP:~# docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+
+```ruby
+93078b4c54154925b80b30d994b97096
+````
+93078b4c54154925b80b30d994b97096
+
