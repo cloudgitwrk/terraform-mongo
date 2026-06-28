@@ -1111,4 +1111,6 @@ http://localhost:8080
 Login:
 demo / demo
 ```
+<img width="1919" height="637" alt="image" src="https://github.com/user-attachments/assets/06d827d2-da08-461a-9a26-0d0d5645e06d" />
+
 
