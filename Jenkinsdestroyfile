@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout Code') {
+            steps {
+                git url: 'git@github.com:cloudgitwrk/terraform-mongo.git',
+                    branch: 'main'
+            }
+        }
+
+        stage('Terraform Init') {
+            steps {
+                sh 'terraform init -input=false'
+            }
+        }
+
+        stage('Terraform Destroy') {
+            steps {
+                sh 'terraform destroy -auto-approve'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "✅ MongoDB Atlas Infrastructure Destroyed Successfully"
+        }
+        failure {
+            echo "❌ Destroy Failed"
+        }
+    }
+}
