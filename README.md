@@ -1,3 +1,4 @@
+```ruby
 IMPORTANT NOTE (VERY IMPORTANT for Terraform)
 🚨 terraform.tfvars usually contains:
 
@@ -15,3 +16,4 @@ git rm --cached terraform.tfvars
 git add .gitignore
 git commit -m "Ignore tfvars"
 git push
+```
