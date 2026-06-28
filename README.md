@@ -514,3 +514,6 @@ Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
 [Pipeline] End of Pipeline
 Finished: SUCCESS
 ````
+
+<img width="1678" height="6581" alt="image" src="https://github.com/user-attachments/assets/341721a6-dabd-4f05-b129-7f5b96a4aac5" />
+
