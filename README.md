@@ -517,3 +517,5 @@ Finished: SUCCESS
 
 <img width="1678" height="6581" alt="image" src="https://github.com/user-attachments/assets/341721a6-dabd-4f05-b129-7f5b96a4aac5" />
 
+http://localhost:8080/job/terraform-mongo/build?token=camunda-trigger
+
