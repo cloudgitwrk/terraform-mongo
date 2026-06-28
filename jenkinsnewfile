@@ -1,0 +1,40 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout Code') {
+            steps {
+                git url: 'git@github.com:cloudgitwrk/terraform-mongo.git',
+                    branch: 'main'
+            }
+        }
+
+        stage('Terraform Init') {
+            steps {
+                sh 'terraform init -input=false'
+            }
+        }
+
+        stage('Terraform Destroy (Optional)') {
+            steps {
+                sh 'terraform destroy -auto-approve || true'
+            }
+        }
+
+        stage('Terraform Apply') {
+            steps {
+                sh 'terraform apply -auto-approve'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "✅ Pipeline Completed Successfully"
+        }
+        failure {
+            echo "❌ Pipeline Failed"
+        }
+    }
+}
