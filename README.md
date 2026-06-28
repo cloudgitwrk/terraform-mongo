@@ -524,3 +524,344 @@ Finished: SUCCESS
 ```ruby
 http://localhost:8080/job/mongo-terraform-job/build?token=camunda-trigger
 ````
+
+># Destroy & Apply
+
+```sh
+Started by user Venkatesh Reddy
+Obtained jenkinsnewfile from git git@github.com:cloudgitwrk/terraform-mongo.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/workspace/mongo-terraform-job
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/mongo-terraform-job/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url git@github.com:cloudgitwrk/terraform-mongo.git # timeout=10
+Fetching upstream changes from git@github.com:cloudgitwrk/terraform-mongo.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.3'
+ > git fetch --tags --force --progress -- git@github.com:cloudgitwrk/terraform-mongo.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 13c0758678ca6c484ab9baaa0ed835d993c8ab11 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 13c0758678ca6c484ab9baaa0ed835d993c8ab11 # timeout=10
+Commit message: "Create jenkinsnewfile"
+ > git rev-list --no-walk 04164c8e98985594666c21106b7d190a6d2e3519 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout Code)
+[Pipeline] git
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/mongo-terraform-job/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url git@github.com:cloudgitwrk/terraform-mongo.git # timeout=10
+Fetching upstream changes from git@github.com:cloudgitwrk/terraform-mongo.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.3'
+ > git fetch --tags --force --progress -- git@github.com:cloudgitwrk/terraform-mongo.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 13c0758678ca6c484ab9baaa0ed835d993c8ab11 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 13c0758678ca6c484ab9baaa0ed835d993c8ab11 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D main # timeout=10
+ > git checkout -b main 13c0758678ca6c484ab9baaa0ed835d993c8ab11 # timeout=10
+Commit message: "Create jenkinsnewfile"
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Terraform Init)
+[Pipeline] sh
++ terraform init -input=false
+
+[0m[1mInitializing the backend...[0m
+
+[0m[1mInitializing provider plugins...[0m
+- Reusing previous version of mongodb/mongodbatlas from the dependency lock file
+- Installing mongodb/mongodbatlas v1.41.1...
+- Installed mongodb/mongodbatlas v1.41.1 (signed by a HashiCorp partner, key ID [0m[1m2A32ED1F3AD25ABF[0m[0m)
+
+Partner and community providers are signed by their developers.
+If you'd like to know more about provider signing, you can read about it here:
+https://www.terraform.io/docs/cli/plugins/signing.html
+
+[0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
+[0m[32m
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.[0m
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Terraform Destroy (Optional))
+[Pipeline] sh
++ terraform destroy -auto-approve
+[0m[1mmongodbatlas_project.project: Refreshing state... [id=6a40cae2f18536d525db2172][0m
+[0m[1mmongodbatlas_cluster.cluster: Refreshing state... [id=Y2x1c3Rlcl9pZA==:NmE0MGNhZWIwYzdjODQxNDIzNDJkOWQz-Y2x1c3Rlcl9uYW1l:dGYtbTAtY2x1c3Rlcg==-cHJvamVjdF9pZA==:NmE0MGNhZTJmMTg1MzZkNTI1ZGIyMTcy-cHJvdmlkZXJfbmFtZQ==:VEVOQU5U][0m
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [31m-[0m destroy[0m
+
+Terraform will perform the following actions:
+
+[1m  # mongodbatlas_cluster.cluster[0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "mongodbatlas_cluster" "cluster" {
+      [31m-[0m[0m auto_scaling_compute_enabled            = false [90m-> null[0m[0m
+      [31m-[0m[0m auto_scaling_compute_scale_down_enabled = false [90m-> null[0m[0m
+      [31m-[0m[0m backing_provider_name                   = "AWS" [90m-> null[0m[0m
+      [31m-[0m[0m backup_enabled                          = false [90m-> null[0m[0m
+      [31m-[0m[0m cluster_id                              = "6a40caeb0c7c84142342d9d3" [90m-> null[0m[0m
+      [31m-[0m[0m cluster_type                            = "REPLICASET" [90m-> null[0m[0m
+      [31m-[0m[0m connection_strings                      = [
+          [31m-[0m[0m {
+              [31m-[0m[0m private          = ""
+              [31m-[0m[0m private_endpoint = []
+              [31m-[0m[0m private_srv      = ""
+              [31m-[0m[0m standard         = "mongodb://ac-qbpsjmp-shard-00-00.kfvwihu.mongodb.net:27017,ac-qbpsjmp-shard-00-01.kfvwihu.mongodb.net:27017,ac-qbpsjmp-shard-00-02.kfvwihu.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=atlas-mptenv-shard-0"
+              [31m-[0m[0m standard_srv     = "mongodb+srv://tf-m0-cluster.kfvwihu.mongodb.net"
+            },
+        ] [90m-> null[0m[0m
+      [31m-[0m[0m disk_size_gb                            = 0.5 [90m-> null[0m[0m
+      [31m-[0m[0m encryption_at_rest_provider             = "NONE" [90m-> null[0m[0m
+      [31m-[0m[0m id                                      = "Y2x1c3Rlcl9pZA==:NmE0MGNhZWIwYzdjODQxNDIzNDJkOWQz-Y2x1c3Rlcl9uYW1l:dGYtbTAtY2x1c3Rlcg==-cHJvamVjdF9pZA==:NmE0MGNhZTJmMTg1MzZkNTI1ZGIyMTcy-cHJvdmlkZXJfbmFtZQ==:VEVOQU5U" [90m-> null[0m[0m
+      [31m-[0m[0m mongo_db_major_version                  = "8.0" [90m-> null[0m[0m
+      [31m-[0m[0m mongo_db_version                        = "8.0.24-patch-6a3992052eafe5000797a34e" [90m-> null[0m[0m
+      [31m-[0m[0m mongo_uri                               = "mongodb://ac-qbpsjmp-shard-00-00.kfvwihu.mongodb.net:27017,ac-qbpsjmp-shard-00-01.kfvwihu.mongodb.net:27017,ac-qbpsjmp-shard-00-02.kfvwihu.mongodb.net:27017" [90m-> null[0m[0m
+      [31m-[0m[0m mongo_uri_updated                       = "2026-06-28T07:19:09Z" [90m-> null[0m[0m
+      [31m-[0m[0m mongo_uri_with_options                  = "mongodb://ac-qbpsjmp-shard-00-00.kfvwihu.mongodb.net:27017,ac-qbpsjmp-shard-00-01.kfvwihu.mongodb.net:27017,ac-qbpsjmp-shard-00-02.kfvwihu.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=atlas-mptenv-shard-0" [90m-> null[0m[0m
+      [31m-[0m[0m name                                    = "tf-m0-cluster" [90m-> null[0m[0m
+      [31m-[0m[0m num_shards                              = 1 [90m-> null[0m[0m
+      [31m-[0m[0m paused                                  = false [90m-> null[0m[0m
+      [31m-[0m[0m pit_enabled                             = false [90m-> null[0m[0m
+      [31m-[0m[0m project_id                              = "6a40cae2f18536d525db2172" [90m-> null[0m[0m
+      [31m-[0m[0m provider_instance_size_name             = "M0" [90m-> null[0m[0m
+      [31m-[0m[0m provider_name                           = "TENANT" [90m-> null[0m[0m
+      [31m-[0m[0m provider_region_name                    = "AP_SOUTH_1" [90m-> null[0m[0m
+      [31m-[0m[0m redact_client_log_data                  = false [90m-> null[0m[0m
+      [31m-[0m[0m replication_factor                      = 3 [90m-> null[0m[0m
+      [31m-[0m[0m snapshot_backup_policy                  = [] [90m-> null[0m[0m
+      [31m-[0m[0m srv_address                             = "mongodb+srv://tf-m0-cluster.kfvwihu.mongodb.net" [90m-> null[0m[0m
+      [31m-[0m[0m state_name                              = "IDLE" [90m-> null[0m[0m
+      [31m-[0m[0m termination_protection_enabled          = false [90m-> null[0m[0m
+      [31m-[0m[0m version_release_system                  = "LTS" [90m-> null[0m[0m
+
+      [31m-[0m[0m advanced_configuration {
+          [31m-[0m[0m change_stream_options_pre_and_post_images_expire_after_seconds = -1 [90m-> null[0m[0m
+          [31m-[0m[0m custom_openssl_cipher_config_tls12                             = [] [90m-> null[0m[0m
+          [31m-[0m[0m default_max_time_ms                                            = 0 [90m-> null[0m[0m
+          [31m-[0m[0m fail_index_key_too_long                                        = false [90m-> null[0m[0m
+          [31m-[0m[0m javascript_enabled                                             = true [90m-> null[0m[0m
+          [31m-[0m[0m minimum_enabled_tls_protocol                                   = "TLS1_2" [90m-> null[0m[0m
+          [31m-[0m[0m no_table_scan                                                  = false [90m-> null[0m[0m
+          [31m-[0m[0m oplog_min_retention_hours                                      = 0 [90m-> null[0m[0m
+          [31m-[0m[0m oplog_size_mb                                                  = 0 [90m-> null[0m[0m
+          [31m-[0m[0m sample_refresh_interval_bi_connector                           = 0 [90m-> null[0m[0m
+          [31m-[0m[0m sample_size_bi_connector                                       = 0 [90m-> null[0m[0m
+          [31m-[0m[0m tls_cipher_config_mode                                         = "DEFAULT" [90m-> null[0m[0m
+          [31m-[0m[0m transaction_lifetime_limit_seconds                             = 0 [90m-> null[0m[0m
+        }
+
+      [31m-[0m[0m bi_connector_config {
+          [31m-[0m[0m enabled         = false [90m-> null[0m[0m
+          [31m-[0m[0m read_preference = "secondary" [90m-> null[0m[0m
+        }
+
+      [31m-[0m[0m replication_specs {
+          [31m-[0m[0m id         = "6a40caea0c7c84142342d966" [90m-> null[0m[0m
+          [31m-[0m[0m num_shards = 1 [90m-> null[0m[0m
+          [31m-[0m[0m zone_name  = "Zone 1" [90m-> null[0m[0m
+
+          [31m-[0m[0m regions_config {
+              [31m-[0m[0m analytics_nodes = 0 [90m-> null[0m[0m
+              [31m-[0m[0m electable_nodes = 3 [90m-> null[0m[0m
+              [31m-[0m[0m priority        = 7 [90m-> null[0m[0m
+              [31m-[0m[0m read_only_nodes = 0 [90m-> null[0m[0m
+              [31m-[0m[0m region_name     = "AP_SOUTH_1" [90m-> null[0m[0m
+            }
+        }
+    }
+
+[1m  # mongodbatlas_project.project[0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "mongodbatlas_project" "project" {
+      [31m-[0m[0m cluster_count                                    = 1 [90m-> null[0m[0m
+      [31m-[0m[0m created                                          = "2026-06-28T07:19:01Z" [90m-> null[0m[0m
+      [31m-[0m[0m id                                               = "6a40cae2f18536d525db2172" [90m-> null[0m[0m
+      [31m-[0m[0m ip_addresses                                     = {
+          [31m-[0m[0m services = {
+              [31m-[0m[0m clusters = [
+                  [31m-[0m[0m {
+                      [31m-[0m[0m cluster_name = "tf-m0-cluster" [90m-> null[0m[0m
+                      [31m-[0m[0m inbound      = [
+                          [31m-[0m[0m "159.41.168.5",
+                          [31m-[0m[0m "159.41.168.24",
+                          [31m-[0m[0m "159.41.168.39",
+                        ] [90m-> null[0m[0m
+                      [31m-[0m[0m outbound     = [
+                          [31m-[0m[0m "159.41.168.5",
+                          [31m-[0m[0m "159.41.168.24",
+                          [31m-[0m[0m "159.41.168.39",
+                        ] [90m-> null[0m[0m
+                    },
+                ] [90m-> null[0m[0m
+            } [90m-> null[0m[0m
+        } [90m-> null[0m[0m
+      [31m-[0m[0m is_collect_database_specifics_statistics_enabled = true [90m-> null[0m[0m
+      [31m-[0m[0m is_data_explorer_enabled                         = true [90m-> null[0m[0m
+      [31m-[0m[0m is_extended_storage_sizes_enabled                = false [90m-> null[0m[0m
+      [31m-[0m[0m is_performance_advisor_enabled                   = true [90m-> null[0m[0m
+      [31m-[0m[0m is_realtime_performance_panel_enabled            = true [90m-> null[0m[0m
+      [31m-[0m[0m is_schema_advisor_enabled                        = true [90m-> null[0m[0m
+      [31m-[0m[0m is_slow_operation_thresholding_enabled           = true [90m-> null[0m[0m
+      [31m-[0m[0m name                                             = "tf-test-project" [90m-> null[0m[0m
+      [31m-[0m[0m org_id                                           = "65cb1f577520326ee15a5578" [90m-> null[0m[0m
+      [31m-[0m[0m with_default_alerts_settings                     = true [90m-> null[0m[0m
+    }
+
+[1mPlan:[0m 0 to add, 0 to change, 2 to destroy.
+[0m[0m[1mmongodbatlas_cluster.cluster: Destroying... [id=Y2x1c3Rlcl9pZA==:NmE0MGNhZWIwYzdjODQxNDIzNDJkOWQz-Y2x1c3Rlcl9uYW1l:dGYtbTAtY2x1c3Rlcg==-cHJvamVjdF9pZA==:NmE0MGNhZTJmMTg1MzZkNTI1ZGIyMTcy-cHJvdmlkZXJfbmFtZQ==:VEVOQU5U][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still destroying... [id=Y2x1c3Rlcl9pZA==:NmE0MGNhZWIwYzdjODQxND...ZGIyMTcy-cHJvdmlkZXJfbmFtZQ==:VEVOQU5U, 10s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still destroying... [id=Y2x1c3Rlcl9pZA==:NmE0MGNhZWIwYzdjODQxND...ZGIyMTcy-cHJvdmlkZXJfbmFtZQ==:VEVOQU5U, 20s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still destroying... [id=Y2x1c3Rlcl9pZA==:NmE0MGNhZWIwYzdjODQxND...ZGIyMTcy-cHJvdmlkZXJfbmFtZQ==:VEVOQU5U, 30s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still destroying... [id=Y2x1c3Rlcl9pZA==:NmE0MGNhZWIwYzdjODQxND...ZGIyMTcy-cHJvdmlkZXJfbmFtZQ==:VEVOQU5U, 40s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still destroying... [id=Y2x1c3Rlcl9pZA==:NmE0MGNhZWIwYzdjODQxND...ZGIyMTcy-cHJvdmlkZXJfbmFtZQ==:VEVOQU5U, 50s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still destroying... [id=Y2x1c3Rlcl9pZA==:NmE0MGNhZWIwYzdjODQxND...ZGIyMTcy-cHJvdmlkZXJfbmFtZQ==:VEVOQU5U, 1m0s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Destruction complete after 1m3s[0m
+[0m[1mmongodbatlas_project.project: Destroying... [id=6a40cae2f18536d525db2172][0m[0m
+[0m[1mmongodbatlas_project.project: Destruction complete after 1s[0m
+[0m[1m[32m
+Destroy complete! Resources: 2 destroyed.
+[0m
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Terraform Apply)
+[Pipeline] sh
++ terraform apply -auto-approve
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [32m+[0m create[0m
+
+Terraform will perform the following actions:
+
+[1m  # mongodbatlas_cluster.cluster[0m will be created
+[0m  [32m+[0m[0m resource "mongodbatlas_cluster" "cluster" {
+      [32m+[0m[0m accept_data_risks_and_force_replica_set_reconfig = (known after apply)
+      [32m+[0m[0m auto_scaling_compute_enabled                     = (known after apply)
+      [32m+[0m[0m auto_scaling_compute_scale_down_enabled          = (known after apply)
+      [32m+[0m[0m auto_scaling_disk_gb_enabled                     = (known after apply)
+      [32m+[0m[0m backing_provider_name                            = "AWS"
+      [32m+[0m[0m backup_enabled                                   = (known after apply)
+      [32m+[0m[0m cloud_backup                                     = (known after apply)
+      [32m+[0m[0m cluster_id                                       = (known after apply)
+      [32m+[0m[0m cluster_type                                     = "REPLICASET"
+      [32m+[0m[0m connection_strings                               = (known after apply)
+      [32m+[0m[0m container_id                                     = (known after apply)
+      [32m+[0m[0m disk_size_gb                                     = (known after apply)
+      [32m+[0m[0m encryption_at_rest_provider                      = (known after apply)
+      [32m+[0m[0m id                                               = (known after apply)
+      [32m+[0m[0m mongo_db_major_version                           = (known after apply)
+      [32m+[0m[0m mongo_db_version                                 = (known after apply)
+      [32m+[0m[0m mongo_uri                                        = (known after apply)
+      [32m+[0m[0m mongo_uri_updated                                = (known after apply)
+      [32m+[0m[0m mongo_uri_with_options                           = (known after apply)
+      [32m+[0m[0m name                                             = "tf-m0-cluster"
+      [32m+[0m[0m num_shards                                       = (known after apply)
+      [32m+[0m[0m paused                                           = (known after apply)
+      [32m+[0m[0m pit_enabled                                      = (known after apply)
+      [32m+[0m[0m project_id                                       = (known after apply)
+      [32m+[0m[0m provider_auto_scaling_compute_max_instance_size  = (known after apply)
+      [32m+[0m[0m provider_auto_scaling_compute_min_instance_size  = (known after apply)
+      [32m+[0m[0m provider_disk_iops                               = (known after apply)
+      [32m+[0m[0m provider_disk_type_name                          = (known after apply)
+      [32m+[0m[0m provider_encrypt_ebs_volume                      = (known after apply)
+      [32m+[0m[0m provider_encrypt_ebs_volume_flag                 = (known after apply)
+      [32m+[0m[0m provider_instance_size_name                      = "M0"
+      [32m+[0m[0m provider_name                                    = "TENANT"
+      [32m+[0m[0m provider_region_name                             = "AP_SOUTH_1"
+      [32m+[0m[0m provider_volume_type                             = (known after apply)
+      [32m+[0m[0m redact_client_log_data                           = (known after apply)
+      [32m+[0m[0m replication_factor                               = (known after apply)
+      [32m+[0m[0m snapshot_backup_policy                           = (known after apply)
+      [32m+[0m[0m srv_address                                      = (known after apply)
+      [32m+[0m[0m state_name                                       = (known after apply)
+      [32m+[0m[0m termination_protection_enabled                   = (known after apply)
+      [32m+[0m[0m version_release_system                           = (known after apply)
+    }
+
+[1m  # mongodbatlas_project.project[0m will be created
+[0m  [32m+[0m[0m resource "mongodbatlas_project" "project" {
+      [32m+[0m[0m cluster_count                                    = (known after apply)
+      [32m+[0m[0m created                                          = (known after apply)
+      [32m+[0m[0m id                                               = (known after apply)
+      [32m+[0m[0m ip_addresses                                     = (known after apply)
+      [32m+[0m[0m is_collect_database_specifics_statistics_enabled = (known after apply)
+      [32m+[0m[0m is_data_explorer_enabled                         = (known after apply)
+      [32m+[0m[0m is_extended_storage_sizes_enabled                = (known after apply)
+      [32m+[0m[0m is_performance_advisor_enabled                   = (known after apply)
+      [32m+[0m[0m is_realtime_performance_panel_enabled            = (known after apply)
+      [32m+[0m[0m is_schema_advisor_enabled                        = (known after apply)
+      [32m+[0m[0m is_slow_operation_thresholding_enabled           = (known after apply)
+      [32m+[0m[0m name                                             = "tf-test-project"
+      [32m+[0m[0m org_id                                           = "65cb1f577520326ee15a5578"
+      [32m+[0m[0m region_usage_restrictions                        = (known after apply)
+      [32m+[0m[0m with_default_alerts_settings                     = true
+    }
+
+[1mPlan:[0m 2 to add, 0 to change, 0 to destroy.
+[0m[1mmongodbatlas_project.project: Creating...[0m[0m
+[0m[1mmongodbatlas_project.project: Creation complete after 7s [id=6a4124f72bfb2b1ebccaa75f][0m
+[0m[1mmongodbatlas_cluster.cluster: Creating...[0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [10s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [20s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [30s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [40s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [50s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [1m0s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [1m10s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [1m20s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [1m30s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [1m40s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [1m50s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [2m0s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [2m10s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [2m20s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [2m30s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [2m40s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [2m50s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Still creating... [3m0s elapsed][0m[0m
+[0m[1mmongodbatlas_cluster.cluster: Creation complete after 3m4s [id=Y2x1c3Rlcl9pZA==:NmE0MTI0ZmU0Y2YwYjZiMmYzZmVkMGU3-Y2x1c3Rlcl9uYW1l:dGYtbTAtY2x1c3Rlcg==-cHJvamVjdF9pZA==:NmE0MTI0ZjcyYmZiMmIxZWJjY2FhNzVm-cHJvdmlkZXJfbmFtZQ==:VEVOQU5U][0m
+[0m[1m[32m
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+[0m
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] echo
+✅ Pipeline Completed Successfully
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
+````
