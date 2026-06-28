@@ -517,5 +517,10 @@ Finished: SUCCESS
 
 <img width="1678" height="6581" alt="image" src="https://github.com/user-attachments/assets/341721a6-dabd-4f05-b129-7f5b96a4aac5" />
 
-http://localhost:8080/job/terraform-mongo/build?token=camunda-trigger
+> Token Generation
+<img width="1361" height="181" alt="image" src="https://github.com/user-attachments/assets/2d49618a-fa8f-4406-99ac-e767d20bc911" />
 
+
+```ruby
+http://localhost:8080/job/mongo-terraform-job/build?token=camunda-trigger
+````
