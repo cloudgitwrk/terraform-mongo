@@ -1098,3 +1098,17 @@ Destroy complete! Resources: 2 destroyed.
 [Pipeline] End of Pipeline
 Finished: SUCCESS
 ````
+># Camunda Setup
+
+````
+sudo apt update
+sudo apt install openjdk-11-jdk -y
+wget https://downloads.camunda.cloud/release/camunda-bpm/run/7.20/camunda-bpm-run-7.20.0.tar.gz
+tar -xvzf camunda-bpm-run-7.20.0.tar.gz
+cd camunda-bpm-run-7.20.0
+./start.sh
+http://localhost:8080
+Login:
+demo / demo
+```
+
