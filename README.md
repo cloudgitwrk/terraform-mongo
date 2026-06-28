@@ -63,4 +63,43 @@ CONTAINER ID   IMAGE                 COMMAND                  CREATED           
 93078b4c54154925b80b30d994b97096
 ````
 
+````ruby
+(venv) root@DELL-PERSONAL-LAPTOP:~/terraform-mongo# git add Jenkinsfile
+git commit -m "Added Jenkins pipeline"
+git push
+[main 32dcde8] Added Jenkins pipeline
+ 1 file changed, 46 insertions(+)
+ create mode 100644 Jenkinsfile
+To github.com:cloudgitwrk/terraform-mongo.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to 'github.com:cloudgitwrk/terraform-mongo.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+(venv) root@DELL-PERSONAL-LAPTOP:~/terraform-mongo# git pull origin main --no-rebase
+remote: Enumerating objects: 22, done.
+remote: Counting objects: 100% (22/22), done.
+remote: Compressing objects: 100% (21/21), done.
+remote: Total 21 (delta 13), reused 0 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (21/21), 7.15 KiB | 457.00 KiB/s, done.
+From github.com:cloudgitwrk/terraform-mongo
+ * branch            main       -> FETCH_HEAD
+   3d2f960..1b6dd92  main       -> origin/main
+Merge made by the 'ort' strategy.
+ README.md | 66 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 66 insertions(+)
+ create mode 100644 README.md
+(venv) root@DELL-PERSONAL-LAPTOP:~/terraform-mongo# git push
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 819 bytes | 819.00 KiB/s, done.
+Total 5 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 1 local object.
+To github.com:cloudgitwrk/terraform-mongo.git
+   1b6dd92..8609990  main -> main
+`````
 
