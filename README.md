@@ -50,4 +50,9 @@ b7e7f4c38e4c: Pull complete
 Digest: sha256:e82bbdcffb6361c081ac66bbdcd5802a299b3631c78c3be04a0a91c7f952fff3
 Status: Downloaded newer image for jenkins/jenkins:lts
 178c45c19ff518963bb6f0254ab8246aea0555f68f439c64babf34527be7453d
+
+(venv) root@DELL-PERSONAL-LAPTOP:~# docker ps
+CONTAINER ID   IMAGE                 COMMAND                  CREATED              STATUS              PORTS                                                                                          NAMES
+178c45c19ff5   jenkins/jenkins:lts   "/usr/bin/tini -- /u…"   About a minute ago   Up About a minute   0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp, 0.0.0.0:50000->50000/tcp, [::]:50000->50000/tcp   jenkins
+
 `````
