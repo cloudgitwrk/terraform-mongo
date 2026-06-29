@@ -1,4 +1,8 @@
 ```ruby
+https://github.com/camunda-community-hub/camunda-8-inbound-connector-mongodb/blob/main/README.md
+````
+
+```ruby
 https://github.com/Rebo4n/tf-module-mongodb-atlas
 ```
 
